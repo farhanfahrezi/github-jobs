@@ -33,6 +33,7 @@ export default function JobList() {
         (item, index) =>
           item?.id && (
             <JobListItem
+              key={item.id}
               {...item}
               isLast={index === data.length - 1}
               loadMore={() => getJobListHandler()}

@@ -68,7 +68,7 @@ const useHttp = () => {
     async (
       url: string,
       data: any,
-      { onSuccess = null, onError = null }: RequestCallback = {}
+      { onSuccess = null, onError = null }: any = {}
     ) => {
       return request(
         {
@@ -76,6 +76,7 @@ const useHttp = () => {
           data: data,
           method: "post",
         },
+        // ts-ignore
         onSuccess,
         onError
       );
@@ -87,7 +88,7 @@ const useHttp = () => {
     async (
       url: string,
       data: any,
-      { onSuccess = null, onError = null }: RequestCallback = {}
+      { onSuccess = null, onError = null }: any = {}
     ) => {
       return request(
         {
@@ -106,7 +107,7 @@ const useHttp = () => {
     async (
       url: string,
       data: any,
-      { onSuccess = null, onError = null }: RequestCallback = {}
+      { onSuccess = null, onError = null }: any = {}
     ) => {
       return request(
         {
@@ -122,10 +123,7 @@ const useHttp = () => {
   );
 
   const del = useCallback(
-    async (
-      url: string,
-      { onSuccess = null, onError = null }: RequestCallback = {}
-    ) => {
+    async (url: string, { onSuccess = null, onError = null }: any = {}) => {
       return request(
         {
           url: url,
@@ -139,10 +137,7 @@ const useHttp = () => {
   );
 
   const get = useCallback(
-    async (
-      url: string,
-      { onSuccess = null, onError = null }: RequestCallback = {}
-    ) => {
+    async (url: string, { onSuccess = null, onError = null }: any = {}) => {
       return request(
         {
           url: url,
