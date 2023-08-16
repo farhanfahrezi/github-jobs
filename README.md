@@ -4,7 +4,7 @@ This project was built using [Next.js](https://nextjs.org/), a popular React fra
 
 ## Demo
 
-A live demo of this project can be accessed at http://dansmultipro.farhanfahrezi.com (with http instead of https) Feel free to explore and try out the features.
+A live demo of this project can be accessed at https://dansmultipro.farhanfahrezi.com Feel free to explore and try out the features.
 
 ## Technologies Used
 
