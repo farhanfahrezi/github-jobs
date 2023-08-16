@@ -1,6 +1,10 @@
-# Next.js & NextUI Template
+# Github Repositories Explorer
 
-This is a template for creating applications using Next.js 13 (app directory) and NextUI (v2).
+This project was built using [Next.js](https://nextjs.org/), a popular React framework for building server-side rendered applications. Next.js provides many features out of the box such as automatic code splitting, server-side rendering, and static site generation.
+
+## Demo
+
+A live demo of this project can be accessed at http://dansmultipro.farhanfahrezi.com (with http instead of https) Feel free to explore and try out the features.
 
 ## Technologies Used
 
@@ -14,13 +18,16 @@ This is a template for creating applications using Next.js 13 (app directory) an
 
 ## How to Use
 
+### Env
 
-### Use the template with create-next-app
-
-To create a new project based on this template using `create-next-app`, run the following command:
+Create a '**.env**' file in the root of the project and add the following line, replacing '**YOUR-GITHUB-TOKEN**' with your actual Github token:
 
 ```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
+NEXT_PUBLIC_API_URL=http://dev3.dansmultipro.co.id/api
+NEXTAUTH_URL=http://localhost:3000
+GOOGLE_CLIENT_ID=<GOOGLE_CLIENT_ID>
+GOOGLE_CLIENT_SECRET=<GOOGLE_CLIENT_SECRET>
+
 ```
 
 ### Install dependencies
@@ -35,6 +42,8 @@ npm install
 npm run dev
 ```
 
-## License
+## Additional Information
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+This project is built with Next.js, which is a React framework for building server-side rendered (SSR) and statically generated (SSG) applications. It provides a simplified and efficient development experience with features like automatic code splitting, built-in CSS support, and hot module replacement.
+
+If you encounter any issues or have any questions, please don't hesitate to contact the project maintainers.

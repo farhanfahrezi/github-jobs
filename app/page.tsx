@@ -1,54 +1,68 @@
-import NextLink from "next/link";
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
-import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+"use client";
+
+import { DrawerWrapper } from "@/components/drawer";
+import JobDetail from "@/components/job/detail";
+import Filter from "@/components/job/filter";
+import JobList from "@/components/job/list";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { JobState, jobActions } from "@/store/slice/job";
+import { Card, CardBody, Divider } from "@nextui-org/react";
+
+interface QueryData {
+  description?: string;
+  location?: string;
+  full_time?: string;
+}
 
 export default function Home() {
-	return (
-		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-			<div className="inline-block max-w-lg text-center justify-center">
-				<h1 className={title()}>Make&nbsp;</h1>
-				<h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-				<br />
-				<h1 className={title()}>
-					websites regardless of your design experience.
-				</h1>
-				<h2 className={subtitle({ class: "mt-4" })}>
-					Beautiful, fast and modern React UI library.
-				</h2>
-			</div>
+  const dispatch = useAppDispatch();
+  const { query, data, detail, isLoading }: JobState = useAppSelector(
+    (state) => state.job
+  );
 
-			<div className="flex gap-3">
-				<Link
-					isExternal
-					as={NextLink}
-					href={siteConfig.links.docs}
-					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
-				>
-					Documentation
-				</Link>
-				<Link
-					isExternal
-					as={NextLink}
-					className={buttonStyles({ variant: "bordered", radius: "full" })}
-					href={siteConfig.links.github}
-				>
-					<GithubIcon size={20} />
-					GitHub
-				</Link>
-			</div>
+  const isQuery = () => {
+    const _query = Object.keys(query)
+      .map((key) => {
+        if (query[key as keyof QueryData]) {
+          return `${key}=${query[key as keyof QueryData]}`;
+        }
+        return "";
+      })
+      .filter((item) => item !== "");
 
-			<div className="mt-8">
-				<Snippet hideSymbol hideCopyButton variant="flat">
-					<span>
-						Get started by editing <Code color="primary">app/page.tsx</Code>
-					</span>
-				</Snippet>
-			</div>
-		</section>
-	);
+    return _query.length;
+  };
+
+  return (
+    <section className="flex flex-col gap-8">
+      <Filter />
+
+      <Card>
+        <CardBody className="p-0">
+          {!isLoading && (
+            <>
+              <h2 className="px-5 py-6 text-xl font-medium">
+                {isQuery() > 1
+                  ? data.length > 0
+                    ? `Showing ${data.length} Data`
+                    : "No Result"
+                  : "Job List"}
+              </h2>
+              <Divider />
+            </>
+          )}
+          <JobList />
+        </CardBody>
+      </Card>
+
+      <DrawerWrapper
+        visible={detail ? true : false}
+        onClose={() => {
+          dispatch(jobActions.clearDetail({}));
+        }}
+      >
+        <JobDetail />
+      </DrawerWrapper>
+    </section>
+  );
 }
