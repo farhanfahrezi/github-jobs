@@ -41,7 +41,7 @@ export default function JobDetail() {
       <Divider />
 
       {detail && (
-        <div className="flex p-10 gap-20">
+        <div className="flex flex-col md:flex-row p-10 gap-20">
           <div className="flex flex-1 flex-col">
             <div className="flex gap-4">
               {detail.type === "Full Time" && (
@@ -73,11 +73,8 @@ export default function JobDetail() {
             ></div>
           </div>
 
-          <div className="flex flex-col w-1/3 gap-6">
-            <Card
-              isFooterBlurred
-              className="w-full h-[250px] col-span-12 sm:col-span-7"
-            >
+          <div className="flex flex-col w-full md:w-1/3 gap-6">
+            <Card isFooterBlurred className="w-full h-[250px] col-span-12">
               <Image
                 removeWrapper
                 alt="Relaxing app background"

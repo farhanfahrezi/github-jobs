@@ -19,7 +19,7 @@ export const DrawerWrapper = ({ children, visible, onClose }: Props) => {
       overlayOpacity={0.5}
       enableOverlay={true}
       onClose={onClose}
-      className="flex flex-col bg-background max-w-5xl rounded-l-3xl overflow-hidden"
+      className="flex flex-col bg-background max-w-5xl md:rounded-l-3xl overflow-hidden"
       style={{ display: "flex", width: "100%" }}
     >
       <section className="flex flex-1 flex-col bg-background antialiased h-screen">
